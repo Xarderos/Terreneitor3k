@@ -9,6 +9,17 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
+struct Buildings
+{
+	p2DynArray<PhysBody3D*>		phys_builds;
+	p2DynArray<Cube*>			prim_builds;
+};
+struct Constraints
+{
+	p2DynArray<PhysBody3D*>		phys_constraints;
+	p2DynArray<Cube*>			prim_constraints;
+};
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -21,7 +32,12 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
+	void CreateBuilding(const vec3 pos, const vec3 dim, Color bColor);
 public:
+	Buildings buildings;
+	Constraints constraints;
+
+	p2DynArray<Primitive*>	primitives;
 	/*
 	PhysBody3D* pb_snake[MAX_SNAKE];
 	Sphere s_snake[MAX_SNAKE];
