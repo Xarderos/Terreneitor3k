@@ -23,7 +23,7 @@ private:
 	void CalculateViewMatrix();
 
 public:
-	
+	bool isfollowing;
 	vec3 X, Y, Z, Position, Reference;
 
 private:
