@@ -26,7 +26,21 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	CreateBuilding({ 10,  14, 90 }, { 30, 30, 30 }, White);
+	CreateBuilding({ 5, 0, -2.5 }, { 0.5, 1, 155 }, White);
+	CreateBuilding({ -5, 0, -5 }, { 0.5, 1, 140 }, White);
+	CreateBuilding({ -10, 0, 75 }, { 30, 1, 0.5 }, White);
+	CreateBuilding({ -20, 0, 65 }, { 30, 1, 0.5 }, White);
+	CreateBuilding({ -35, 0, 80 }, { 0.5, 1, 30 }, White);
+	CreateBuilding({ -25, 0, 90 }, { 0.5, 1, 30 }, White);
+	CreateBuilding({ -60, 0, 95 }, { 50, 1, 0.5 }, White);
+	CreateBuilding({ -60, 0, 105 }, { 70, 1, 0.5 }, White);
+	CreateBuilding({ -85, 0, 75 }, { 0.5, 1, 40 }, White);
+	CreateBuilding({ -95, 0, 75 }, { 0.5, 1, 60 }, White);
+	CreateBuilding({ -82.5, 0, 55 }, { 5, 1, 0.5 }, White);
+	CreateBuilding({ -82.5, 0, 45 }, { 25, 1, 0.5 }, White);
+	CreateBuilding({ -80, 0, 70 }, { 0.5, 1, 30 }, White);
+	CreateBuilding({ -70, 0, 60 }, { 0.5, 1, 30 }, White);
+
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
@@ -47,7 +61,7 @@ void ModuleSceneIntro::CreateBuilding(const vec3 pos, const vec3 dim, Color bCol
 	Cube* c;
 	c = new Cube(dim.x, dim.y, dim.z);
 	c->color = bColor;
-	c->SetPos(pos.x, pos.y + 1, pos.z);
+	c->SetPos(pos.x, pos.y, pos.z);
 	buildings.prim_builds.PushBack(c);
 	buildings.phys_builds.PushBack(App->physics->AddBody(*c, this, 0.0f));
 }
@@ -60,10 +74,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
+
 	vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
 	App->camera->LookAt(look);
 
-	Cube floor(500, 0.5, 500);
+	Cube floor(250, 0.5, 250);
 	floor.SetPos(0, -0.25, 0);
 	floor.color.r = 0;
 	floor.color.g = 256;
