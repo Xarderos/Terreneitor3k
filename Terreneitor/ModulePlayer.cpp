@@ -21,50 +21,50 @@ bool ModulePlayer::Start()
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
-	car.chassis1_size.Set(3.5f, 3, 7);				//Collision box (1)
+	car.chassis1_size.Set(1.75f, 1.5, 3.5);				//Collision box (1)
 
-	car.chassis2_size.Set(2.5f, 0.5f, 6);			//Base 2  (Black)
-	car.chassis3_size.Set(4, 0.5f, 4);				//Base 3  (Black)
-	car.chassis4_size.Set(3.5f, 0.4f, 1);			//Base 4  (Black)
-	car.chassis5_size.Set(1.5f, 0.5f, 11);			//Base 5  (Red)
-	car.chassis6_size.Set(3.5f, 0.25f, 3.5f);		//Base 6  (Red)
-	car.chassis7_size.Set(3.5f, 0.4f, 1);			//Base 7  (Black)
-	car.chassis8_size.Set(1.75f, 0.3f, 10);			//Base 8  (Grey)
-	car.chassis9_size.Set(1.25f, 0.4f, 9);			//Base 9  (Red)
-	car.chassis10_size.Set(1.2f, 0.6f, 8);			//Base 10 (Grey)
-	car.chassis11_size.Set(1.15f, 0.45f, 3);		//Base 11 (Red)
-	car.chassis12_size.Set(0.75f, 0.5f, 0.25f);		//Chair   (Black)
-	car.chassis13_size.Set(0.6f, 0.4f, 0.2f);		//Steering Wheel (Black)
-	car.chassis14_size.Set(0.75f, 0.3f, 2);			//Base 12 (Orange)
-	car.chassis15_size.Set(0.3f, 0.3f, 1.5f);		//Base Aileron 1 (Orange)
-	car.chassis16_size.Set(0.3f, 0.3f, 1.5f);		//Base Aileron 2 (Orange)
-	car.chassis17_size.Set(0.3f, 0.75f, 0.3f);		//Base Aileron 3 (Orange)
-	car.chassis18_size.Set(0.3f, 0.75f, 0.3f);		//Base Aileron 4 (Orange)
-	car.chassis19_size.Set(3, 0.1f, 1);				//Aileron 1 (Grey)
-	car.chassis20_size.Set(0.1f, 0.4f, 1.1f);		//Aileron 2 (Black)
-	car.chassis21_size.Set(0.1f, 0.4f, 1.1f);		//Aileron 3 (Black)
+	car.chassis2_size.Set(1.25f, 0.25f, 3);			//Base 2  (Black)
+	car.chassis3_size.Set(2, 0.25f, 2);				//Base 3  (Black)
+	car.chassis4_size.Set(1.75f, 0.2f, 5);			//Base 4  (Black)
+	car.chassis5_size.Set(0.75f, 0.25f, 5.5);			//Base 5  (Red)
+	car.chassis6_size.Set(1.75f, 0.125f, 1.75f);		//Base 6  (Red)
+	car.chassis7_size.Set(1.75f, 0.2f, 0.5);			//Base 7  (Black)
+	car.chassis8_size.Set(0.875f, 0.15f, 5);			//Base 8  (Grey)
+	car.chassis9_size.Set(0.625f, 0.2f, 4.5);			//Base 9  (Red)
+	car.chassis10_size.Set(0.6f, 0.3f, 4);			//Base 10 (Grey)
+	car.chassis11_size.Set(0.575f, 0.225f, 1.5);		//Base 11 (Red)
+	car.chassis12_size.Set(0.375f, 0.25f, 0.125f);		//Chair   (Black)
+	car.chassis13_size.Set(0.3f, 0.2f, 0.1f);		//Steering Wheel (Black)
+	car.chassis14_size.Set(0.375f, 0.15f, 1);			//Base 12 (Orange)
+	car.chassis15_size.Set(0.15f, 0.15f, 0.75f);		//Base Aileron 1 (Orange)
+	car.chassis16_size.Set(0.15f, 0.15f, 0.75f);		//Base Aileron 2 (Orange)
+	car.chassis17_size.Set(0.15f, 0.375f, 0.15f);		//Base Aileron 3 (Orange)
+	car.chassis18_size.Set(0.15f, 0.375f, 0.15f);		//Base Aileron 4 (Orange)
+	car.chassis19_size.Set(1.5, 0.05f, 0.5);				//Aileron 1 (Grey)
+	car.chassis20_size.Set(0.05f, 0.2f, 0.55f);		//Aileron 2 (Black)
+	car.chassis21_size.Set(0.05f, 0.2f, 0.55f);		//Aileron 3 (Black)
 
-	car.chassis1_offset.Set(0, 1, 0);
+	car.chassis1_offset.Set(0, 0.5, 0);
 	car.chassis2_offset.Set(0, 0, 0);
 	car.chassis3_offset.Set(0, 0, 0);
-	car.chassis4_offset.Set(0, 0, 4.1f);
-	car.chassis5_offset.Set(0, 0.25f, 1);
-	car.chassis6_offset.Set(0, 0.35f, 0);
-	car.chassis7_offset.Set(0, 0, -4.25f);
-	car.chassis8_offset.Set(0, 0.2f, 0.35f);
-	car.chassis9_offset.Set(0, 0.5f, 0.5f);
-	car.chassis10_offset.Set(0, 0.5f, -0.6f);
-	car.chassis11_offset.Set(0, 0.75f, -2.5);
-	car.chassis12_offset.Set(0, 1, -0.75f);
-	car.chassis13_offset.Set(0, 0.75f, 0.5f);
-	car.chassis14_offset.Set(0, 1, -2);
-	car.chassis15_offset.Set(0.75f, 0.75f, -4.25f);
-	car.chassis16_offset.Set(-0.75f, 0.75f, -4.25f);
-	car.chassis17_offset.Set(0.75f, 1, -4.85);
-	car.chassis18_offset.Set(-0.75f, 1, -4.85);
-	car.chassis19_offset.Set(0, 1.4f, -4.85);
-	car.chassis20_offset.Set(1.5f, 1.4f, -4.85);
-	car.chassis21_offset.Set(-1.5f, 1.4f, -4.85);
+	car.chassis4_offset.Set(0, 0, 2.05f);
+	car.chassis5_offset.Set(0, 0.125f, 0.5);
+	car.chassis6_offset.Set(0, 0.175f, 0);
+	car.chassis7_offset.Set(0, 0, -2.125f);
+	car.chassis8_offset.Set(0, 0.1f, 0.175f);
+	car.chassis9_offset.Set(0, 0.25f, 0.25f);
+	car.chassis10_offset.Set(0, 0.25f, -0.3f);
+	car.chassis11_offset.Set(0, 0.375f, -1.25);
+	car.chassis12_offset.Set(0, 0.5, -0.375f);
+	car.chassis13_offset.Set(0, 0.375f, 0.25f);
+	car.chassis14_offset.Set(0, 0.5, -1);
+	car.chassis15_offset.Set(0.375f, 0.375f, -2.125f);
+	car.chassis16_offset.Set(-0.375f, 0.375f, -2.125f);
+	car.chassis17_offset.Set(0.375f, 0.5, -2.425);
+	car.chassis18_offset.Set(-0.375f, 0.5, -2.425);
+	car.chassis19_offset.Set(0, 0.7f, -2.425);
+	car.chassis20_offset.Set(0.75f, 0.7f, -2.425);
+	car.chassis21_offset.Set(-0.75f, 0.7f, -2.425);
 
 	car.mass = 500.0f;
 	car.suspensionStiffness = 15.88f;
@@ -75,10 +75,10 @@ bool ModulePlayer::Start()
 	car.maxSuspensionForce = 6000.0f;
 
 	// Wheel properties ---------------------------------------
-	float connection_height = 1.2f;
-	float wheel_radius = 0.6f;
-	float wheel_width = 0.5f;
-	float suspensionRestLength = 1.2f;
+	float connection_height = 0.6f;
+	float wheel_radius = 0.3f;
+	float wheel_width = 0.25f;
+	float suspensionRestLength = 0.6f;
 
 	// Don't change anything below this line ------------------
 
