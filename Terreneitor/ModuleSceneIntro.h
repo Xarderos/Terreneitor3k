@@ -32,7 +32,9 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
-	void CreateBuilding(const vec3 pos, const vec3 dim, Color bColor);
+	void CreateCollision(const vec3 pos, const vec3 dim, Color bColor);
+
+	void CreateRamp(const vec3 pos, const vec3 dim, Color bColor, float angle, const vec3& u);
 
 public:
 	Buildings buildings;
