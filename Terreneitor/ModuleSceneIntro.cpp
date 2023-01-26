@@ -26,7 +26,11 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	CreateBuilding({ 5, 0, -2.5 }, { 0.5, 1, 155 }, White);
+	//Hitbox terra
+	CreateBuilding({ -50, -0.25, 10 }, { 250, 0.5, 250 }, White);
+
+	//Hitbox bordes circuit
+	CreateBuilding({ 5, 0, -5 }, { 0.5, 1, 160 }, White);
 	CreateBuilding({ -5, 0, -5 }, { 0.5, 1, 140 }, White);
 	CreateBuilding({ -10, 0, 75 }, { 30, 1, 0.5 }, White);
 	CreateBuilding({ -20, 0, 65 }, { 30, 1, 0.5 }, White);
@@ -40,6 +44,21 @@ bool ModuleSceneIntro::Start()
 	CreateBuilding({ -82.5, 0, 45 }, { 25, 1, 0.5 }, White);
 	CreateBuilding({ -80, 0, 70 }, { 0.5, 1, 30 }, White);
 	CreateBuilding({ -70, 0, 60 }, { 0.5, 1, 30 }, White);
+	CreateBuilding({ -62.5, 0, 85 }, { 35, 1, 0.5 }, White);
+	CreateBuilding({ -62.5, 0, 75 }, { 15, 1, 0.5 }, White);
+	CreateBuilding({ -55, 0, 55 }, { 0.5, 1, 40 }, White);
+	CreateBuilding({ -45, 0, 55 }, { 0.5, 1, 60 }, White);
+	CreateBuilding({ -67.5, 0, 35 }, { 25, 1, 0.5 }, White);
+	CreateBuilding({ -57.5, 0, 25 }, { 25, 1, 0.5 }, White);
+	CreateBuilding({ -80, 0, 2.5 }, { 0.5, 1, 65 }, White);
+	CreateBuilding({ -70, 0, -7.5 }, { 0.5, 1, 65 }, White);
+	CreateBuilding({ -82.5, 0, -40 }, { 25, 1, 0.5 }, White);
+	CreateBuilding({ -92.5, 0, -30 }, { 25, 1, 0.5 }, White);
+	CreateBuilding({ -105, 0, -57.5 }, { 0.5, 1, 55 }, White);
+	CreateBuilding({ -95, 0, -57.5 }, { 0.5, 1, 35 }, White);
+	CreateBuilding({ -50, 0, -75 }, { 90, 1, 0.5 }, White);
+	CreateBuilding({ -50, 0, -85 }, { 110, 1, 0.5 }, White);
+
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
@@ -79,14 +98,14 @@ update_status ModuleSceneIntro::Update(float dt)
 	App->camera->LookAt(look);
 
 	Cube floor(250, 0.5, 250);
-	floor.SetPos(0, -0.25, 0);
+	floor.SetPos(-50, -0.25, 10);
 	floor.color.r = 0;
 	floor.color.g = 256;
 	floor.color.b = 0;
 	floor.Render();
 
-	Cube r1(0.5, 1, 155);
-	r1.SetPos(5, 0, -2.5);
+	Cube r1(0.5, 1, 160);
+	r1.SetPos(5, 0, -5);
 	r1.color.r = 256;
 	r1.color.g = 0;
 	r1.color.b = 0;
@@ -183,10 +202,107 @@ update_status ModuleSceneIntro::Update(float dt)
 	r14.color.b = 0;
 	r14.Render();
 
+	Cube r15(35, 1, 0.5);
+	r15.SetPos(-62.5, 0, 85);
+	r15.color.r = 256;
+	r15.color.g = 0;
+	r15.color.b = 0;
+	r15.Render();
+
+	Cube r16(15, 1, 0.5);
+	r16.SetPos(-62.5, 0, 75);
+	r16.color.r = 256;
+	r16.color.g = 0;
+	r16.color.b = 0;
+	r16.Render();
+
+	Cube r17(0.5, 1, 40);
+	r17.SetPos(-55, 0, 55);
+	r17.color.r = 256;
+	r17.color.g = 0;
+	r17.color.b = 0;
+	r17.Render();
+
+	Cube r18(0.5, 1, 60);
+	r18.SetPos(-45, 0, 55);
+	r18.color.r = 256;
+	r18.color.g = 0;
+	r18.color.b = 0;
+	r18.Render();
+
+	Cube r19(25, 1, 0.5);
+	r19.SetPos(-67.5, 0, 35);
+	r19.color.r = 256;
+	r19.color.g = 0;
+	r19.color.b = 0;
+	r19.Render();
+
+	Cube r20(25, 1, 0.5);
+	r20.SetPos(-57.5, 0, 25);
+	r20.color.r = 256;
+	r20.color.g = 0;
+	r20.color.b = 0;
+	r20.Render();
+
+	Cube r21(0.5, 1, 65);
+	r21.SetPos(-80, 0, 2.5);
+	r21.color.r = 256;
+	r21.color.g = 0;
+	r21.color.b = 0;
+	r21.Render();
+
+	Cube r22(0.5, 1, 65);
+	r22.SetPos(-70, 0, -7.5);
+	r22.color.r = 256;
+	r22.color.g = 0;
+	r22.color.b = 0;
+	r22.Render();
+
+	Cube r23(25, 1, 0.5);
+	r23.SetPos(-82.5, 0, -40);
+	r23.color.r = 256;
+	r23.color.g = 0;
+	r23.color.b = 0;
+	r23.Render();
+
+	Cube r24(25, 1, 0.5);
+	r24.SetPos(-92.5, 0, -30);
+	r24.color.r = 256;
+	r24.color.g = 0;
+	r24.color.b = 0;
+	r24.Render();
+
+	Cube r25(0.5, 1, 55);
+	r25.SetPos(-105, 0, -57.5);
+	r25.color.r = 256;
+	r25.color.g = 0;
+	r25.color.b = 0;
+	r25.Render();
+
+	Cube r26(0.5, 1, 35);
+	r26.SetPos(-95, 0, -57.5);
+	r26.color.r = 256;
+	r26.color.g = 0;
+	r26.color.b = 0;
+	r26.Render();
+
+	Cube r27(90, 1, 0.5);
+	r27.SetPos(-50, 0, -75);
+	r27.color.r = 256;
+	r27.color.g = 0;
+	r27.color.b = 0;
+	r27.Render();
+
+	Cube r28(110, 1, 0.5);
+	r28.SetPos(-50, 0, -85);
+	r28.color.r = 256;
+	r28.color.g = 0;
+	r28.color.b = 0;
+	r28.Render();
+
 	return UPDATE_CONTINUE;
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 }
-
