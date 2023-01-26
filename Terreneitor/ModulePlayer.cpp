@@ -174,8 +174,16 @@ update_status ModulePlayer::Update(float dt)
 		if(turn > -TURN_DEGREES)
 			turn -= TURN_DEGREES;
 	}
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+		if (vehicle->GetKmh() > 10) {
+			acceleration = -MAX_ACCELERATION * 5;
+		}
+		else if (vehicle->GetKmh() > -MAX_SPEED_BACKWARDS) {
+			acceleration = -MAX_ACCELERATION;
+		}
+	}
 
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 	{
 		brake = BRAKE_POWER;
 	}
