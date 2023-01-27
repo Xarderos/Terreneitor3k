@@ -21,34 +21,34 @@ bool ModulePlayer::Start()
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
-	car.chassis1_size.Set(1.75f, 1.5, 3.5);				//Collision box (1)
+	car.chassis1_size.Set(1.75f, 1, 5);				//Collision box (1)
 
-	car.chassis2_size.Set(1.25f, 0.25f, 3);			//Base 2  (Black)
-	car.chassis3_size.Set(2, 0.25f, 2);				//Base 3  (Black)
-	car.chassis4_size.Set(1.75f, 0.2f, 5);			//Base 4  (Black)
-	car.chassis5_size.Set(0.75f, 0.25f, 5.5);			//Base 5  (Red)
+	car.chassis2_size.Set(1.25f, 0.25f, 3);				//Base 2  (Black)
+	car.chassis3_size.Set(2, 0.25f, 2);					//Base 3  (Black)
+	car.chassis4_size.Set(1.75f, 0.2f, 0.75f);			//Base 4  (Black)
+	car.chassis5_size.Set(0.75f, 0.25f, 5.5f);			//Base 5  (Red)
 	car.chassis6_size.Set(1.75f, 0.125f, 1.75f);		//Base 6  (Red)
-	car.chassis7_size.Set(1.75f, 0.2f, 0.5);			//Base 7  (Black)
+	car.chassis7_size.Set(1.75f, 0.2f, 0.5f);			//Base 7  (Black)
 	car.chassis8_size.Set(0.875f, 0.15f, 5);			//Base 8  (Grey)
-	car.chassis9_size.Set(0.625f, 0.2f, 4.5);			//Base 9  (Red)
-	car.chassis10_size.Set(0.6f, 0.3f, 4);			//Base 10 (Grey)
-	car.chassis11_size.Set(0.575f, 0.225f, 1.5);		//Base 11 (Red)
+	car.chassis9_size.Set(0.625f, 0.2f, 4.5f);			//Base 9  (Red)
+	car.chassis10_size.Set(0.6f, 0.3f, 4);				//Base 10 (Grey)
+	car.chassis11_size.Set(0.575f, 0.225f, 1.5f);		//Base 11 (Red)
 	car.chassis12_size.Set(0.375f, 0.25f, 0.125f);		//Chair   (Black)
-	car.chassis13_size.Set(0.3f, 0.2f, 0.1f);		//Steering Wheel (Black)
+	car.chassis13_size.Set(0.3f, 0.2f, 0.1f);			//Steering Wheel (Black)
 	car.chassis14_size.Set(0.375f, 0.15f, 1);			//Base 12 (Orange)
 	car.chassis15_size.Set(0.15f, 0.15f, 0.75f);		//Base Aileron 1 (Orange)
 	car.chassis16_size.Set(0.15f, 0.15f, 0.75f);		//Base Aileron 2 (Orange)
 	car.chassis17_size.Set(0.15f, 0.375f, 0.15f);		//Base Aileron 3 (Orange)
 	car.chassis18_size.Set(0.15f, 0.375f, 0.15f);		//Base Aileron 4 (Orange)
-	car.chassis19_size.Set(1.5, 0.05f, 0.5);				//Aileron 1 (Grey)
-	car.chassis20_size.Set(0.05f, 0.2f, 0.55f);		//Aileron 2 (Black)
-	car.chassis21_size.Set(0.05f, 0.2f, 0.55f);		//Aileron 3 (Black)
+	car.chassis19_size.Set(1.5f, 0.05f, 0.5f);			//Aileron 1 (Grey)
+	car.chassis20_size.Set(0.05f, 0.2f, 0.55f);			//Aileron 2 (Black)
+	car.chassis21_size.Set(0.05f, 0.2f, 0.55f);			//Aileron 3 (Black)
 
 	car.chassis1_offset.Set(0, 0.5, 0);
 	car.chassis2_offset.Set(0, 0, 0);
 	car.chassis3_offset.Set(0, 0, 0);
-	car.chassis4_offset.Set(0, 0, 2.05f);
-	car.chassis5_offset.Set(0, 0.125f, 0.5);
+	car.chassis4_offset.Set(0, 0, 2.2f);
+	car.chassis5_offset.Set(0, 0.125f, 0.5f);
 	car.chassis6_offset.Set(0, 0.175f, 0);
 	car.chassis7_offset.Set(0, 0, -2.125f);
 	car.chassis8_offset.Set(0, 0.1f, 0.175f);
@@ -83,7 +83,7 @@ bool ModulePlayer::Start()
 	// Don't change anything below this line ------------------
 
 	float half_width = car.chassis1_size.x*0.5f;
-	float half_length = car.chassis1_size.z*0.5f;
+	float half_length = car.chassis1_size.z*0.35f;
 	
 	vec3 direction(0,-1,0);
 	vec3 axis(-1,0,0);
@@ -158,9 +158,13 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
 
+	float turbo = 0.0f;
+
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
-		acceleration = MAX_ACCELERATION;
+		if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT) { turbo = 500.0f; }
+
+		acceleration = MAX_ACCELERATION + turbo;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
