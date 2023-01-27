@@ -44,7 +44,7 @@ bool ModuleSceneIntro::Start()
 	CreateCollision({ -50, 13.3, -80 }, { 55, 0.5, 10 }, White);
 
 	//Hitbox bordes circuit
-	CreateCollision({ 5, 20, -5 }, { 0.5, 2, 160 }, White);
+	CreateCollision({ 5, 20, 20 }, { 0.5, 2, 110 }, White);
 	CreateCollision({ -5, 20, -5 }, { 0.5, 2, 140 }, White);
 	CreateCollision({ -10, 20, 75 }, { 30, 2, 0.5 }, White);
 	CreateCollision({ -20, 20, 65 }, { 30, 2, 0.5 }, White);
@@ -72,8 +72,8 @@ bool ModuleSceneIntro::Start()
 	CreateCollision({ -95, 20, -57.5 }, { 0.5, 2, 35 }, White);
 	CreateCollision({ -50, 20, -75 }, { 90, 2, 0.5 }, White);
 	CreateCollision({ -50, 20, -85 }, { 110, 2, 0.5 }, White);
-
-
+	CreateCollision({ 5, 20, -80 }, { 0.5, 2, 10 }, White);
+	
 	//Hitbox ramps
 	CreateRamp({ -60, 20, 100 }, { 10, 1, 10 }, White, 15, { 0, 0, -1 });
 	CreateRamp({ -86, 16.6, -80 }, { 20, 0.5, 10 }, White, 20, { 0, 0, -1 });
@@ -123,6 +123,33 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
 	App->camera->LookAt(look);
+
+	//Meta
+
+	Cylinder c1(0.2, 7);
+	c1.SetPos(5, 24, 0);
+	c1.SetRotation(90, { 0, 0, 1 });
+	c1.color.r = 0;
+	c1.color.g = 0;
+	c1.color.b = 0;
+	c1.Render();
+
+	Cylinder c2(0.2, 7);
+	c2.SetPos(-5, 24, 0);
+	c2.SetRotation(90, { 0, 0, 1 });
+	c2.color.r = 0;
+	c2.color.g = 0;
+	c2.color.b = 0;
+	c2.Render();
+
+	Cube meta(10, 2, 0.2);
+	meta.SetPos(0, 26, 0);
+	meta.color.r = 256;
+	meta.color.g = 256;
+	meta.color.b = 256;
+	meta.Render();
+
+	
 
 	//Floor
 	Cube f1(10, 0.5, 160);
@@ -246,6 +273,49 @@ update_status ModuleSceneIntro::Update(float dt)
 	w2.color.b = 256;
 	w2.Render();
 
+	Cube sand(25, 1, 25);
+	sand.SetPos(-37.5, 19, -25);
+	sand.color.r = 1;
+	sand.color.g = 1;
+	sand.color.b = 0;
+	sand.Render();
+
+	Cube sand2(10, 1, 10);
+	sand2.SetPos(-20, 19, -25);
+	sand2.color.r = 1;
+	sand2.color.g = 1;
+	sand2.color.b = 0;
+	sand2.Render();
+
+	Cylinder tree1(0.4, 7);
+	tree1.SetPos(-32.5, 24, -28);
+	tree1.SetRotation(90, { 0, 0, 1 });
+	tree1.color.r = 0;
+	tree1.color.g = 0;
+	tree1.color.b = 0;
+	tree1.Render();
+
+	Cube tree2(6, 1, 6);
+	tree2.SetPos(-32.5, 26, -28);
+	tree2.color.r = 0;
+	tree2.color.g = 1;
+	tree2.color.b = 0;
+	tree2.Render();
+
+	Cube tree3(4, 1, 4);
+	tree3.SetPos(-32.5, 28, -28);
+	tree3.color.r = 0;
+	tree3.color.g = 1;
+	tree3.color.b = 0;
+	tree3.Render();
+
+	Cube tree4(5, 1, 5);
+	tree4.SetPos(-32.5, 27, -28);
+	tree4.color.r = 0;
+	tree4.color.g = 1;
+	tree4.color.b = 0;
+	tree4.Render();
+
 	Cube w3(25, 0.5, 35);
 	w3.SetPos(-82.5, 19, -57.5);
 	w3.color.r = 0;
@@ -282,13 +352,13 @@ update_status ModuleSceneIntro::Update(float dt)
 	w7.Render();
 		
 	//Limits circuit
-	Cube r1(0.5, 2, 160);
-	r1.SetPos(5, 20, -5);
+	Cube r1(0.5, 2, 110);
+	r1.SetPos(5, 20, 20);
 	r1.color.r = 1;
 	r1.color.g = 0;
 	r1.color.b = 0;
 	r1.Render();
-
+	
 	Cube r2(0.5, 2, 140);
 	r2.SetPos(-5, 20, -5);
 	r2.color.r = 1;
@@ -478,6 +548,13 @@ update_status ModuleSceneIntro::Update(float dt)
 	r28.color.b = 0;
 	r28.Render();
 
+	Cube r29(0.5, 2, 10);
+	r29.SetPos(5, 20, -80);
+	r29.color.r = 1;
+	r29.color.g = 0;
+	r29.color.b = 0;
+	r29.Render();
+
 	//Rampes
 	Cube ramp1(10, 1, 10);
 	ramp1.SetPos(-60, 20, 100);
@@ -503,6 +580,77 @@ update_status ModuleSceneIntro::Update(float dt)
 	ramp3.color.b = 0;
 	ramp3.Render();
 
+	//Terrain
+
+	Cube t1(20, 0.5, 110);
+	t1.SetPos(15, 20, 20);
+	t1.color.r = 1;
+	t1.color.g = 0;
+	t1.color.b = 1;
+	t1.Render();
+
+	Cube t2(120, 0.5, 20);
+	t2.SetPos(-35, 20, 115);
+	t2.color.r = 1;
+	t2.color.g = 0;
+	t2.color.b = 1;
+	t2.Render();
+
+	Cube t3(50, 0.5, 30);
+	t3.SetPos(0, 20, 90);
+	t3.color.r = 1;
+	t3.color.g = 0;
+	t3.color.b = 1;
+	t3.Render();
+
+	Cube t4(130, 0.5, 20);
+	t4.SetPos(-40, 20, -95);
+	t4.color.r = 1;
+	t4.color.g = 0;
+	t4.color.b = 1;
+	t4.Render();
+
+	Cube t5(20, 0.5, 75);
+	t5.SetPos(-115, 20, -67.5);
+	t5.color.r = 1;
+	t5.color.g = 0;
+	t5.color.b = 1;
+	t5.Render();
+
+	Cube t6(45, 0.5, 75);
+	t6.SetPos(-102.5, 20, 7.5);
+	t6.color.r = 1;
+	t6.color.g = 0;
+	t6.color.b = 1;
+	t6.Render();
+
+	Cube t7(20, 0.5, 80);
+	t7.SetPos(-105, 20, 85);
+	t7.color.r = 1;
+	t7.color.g = 0;
+	t7.color.b = 1;
+	t7.Render();
+
+	Cube t8(25, 0.5, 10);
+	t8.SetPos(-67.5, 20, 40);
+	t8.color.r = 1;
+	t8.color.g = 0;
+	t8.color.b = 1;
+	t8.Render();
+
+	Cube t9(15, 0.5, 35);
+	t9.SetPos(-62.5, 20, 60);
+	t9.color.r = 1;
+	t9.color.g = 0;
+	t9.color.b = 1;
+	t9.Render();
+
+	Cube t10(20, 0.5, 10);
+	t10.SetPos(15, 20, -80);
+	t10.color.r = 1;
+	t10.color.g = 0;
+	t10.color.b = 1;
+	t10.Render();
 	
 
 	return UPDATE_CONTINUE;
