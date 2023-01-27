@@ -121,8 +121,14 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();*/
 
-	/*vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
-	App->camera->LookAt(look);*/
+	if(App->camera->isfollowing == true){
+		vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
+		App->camera->LookAt(look);
+		vec3 move = look - 10 * BtToVec(App->player->vehicle->vehicle->getForwardVector());
+		move.y = move.y + 5;
+		App->camera->Look(move, look, true);
+	}
+
 
 	//Meta
 
