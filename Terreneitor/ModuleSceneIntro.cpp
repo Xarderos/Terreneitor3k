@@ -27,7 +27,21 @@ bool ModuleSceneIntro::Start()
 	bool ret = true;
 
 	//Hitbox terra
-	CreateCollision({ -50, 20, 10 }, { 250, 0.5, 250 }, White);
+	CreateCollision({ 0, 20, -5 }, { 10, 0.5, 160 }, White);
+	CreateCollision({ -20, 20, 70 }, { 30, 0.5, 10 }, White);
+	CreateCollision({ -30, 20, 90 }, { 10, 0.5, 30 }, White);
+	CreateCollision({ -47.5, 20, 100 }, { 25, 0.5, 10 }, White);
+	CreateCollision({ -85, 20, 100 }, { 20, 0.5, 10 }, White);
+	CreateCollision({ -90, 20, 70 }, { 10, 0.5, 50 }, White);
+	CreateCollision({ -77.5, 20, 50 }, { 15, 0.5, 10 }, White);
+	CreateCollision({ -75, 20, 70 }, { 10, 0.5, 30 }, White);
+	CreateCollision({ -57.5, 20, 80 }, { 25, 0.5, 10 }, White);
+	CreateCollision({ -50, 20, 50 }, { 10, 0.5, 50 }, White);
+	CreateCollision({ -67.5, 20, 30 }, { 25, 0.5, 10 }, White);
+	CreateCollision({ -75, 20, -7.5 }, { 10, 0.5, 65 }, White);
+	CreateCollision({ -92.5, 20, -35 }, { 25, 0.5, 10 }, White);
+	CreateCollision({ -100, 20, -62.5 }, { 10, 0.5, 45 }, White);
+	CreateCollision({ -50, 13.3, -80 }, { 55, 0.5, 10 }, White);
 
 	//Hitbox bordes circuit
 	CreateCollision({ 5, 20, -5 }, { 0.5, 2, 160 }, White);
@@ -62,6 +76,8 @@ bool ModuleSceneIntro::Start()
 
 	//Hitbox ramps
 	CreateRamp({ -60, 20, 100 }, { 10, 1, 10 }, White, 15, { 0, 0, -1 });
+	CreateRamp({ -86, 16.6, -80 }, { 20, 0.5, 10 }, White, 20, { 0, 0, -1 });
+	CreateRamp({ -14, 16.7, -80 }, { 20, 0.5, 10 }, White, 20, { 0, 0, 1 });
 
 
 	App->camera->Move(vec3(1.0f, 30.0f, 0.0f));
@@ -80,7 +96,6 @@ bool ModuleSceneIntro::CleanUp()
 
 void ModuleSceneIntro::CreateCollision(const vec3 pos, const vec3 dim, Color bColor)
 {
-	// Create a cube to render a building
 	Cube* c;
 	c = new Cube(dim.x, dim.y, dim.z);
 	c->color = bColor;
@@ -101,8 +116,7 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, Color bColor, 
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
-
-
+	
 	/*Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();*/
@@ -110,218 +124,386 @@ update_status ModuleSceneIntro::Update(float dt)
 	vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
 	App->camera->LookAt(look);
 
-	Cube floor(250, 0.5, 250);
-	floor.SetPos(-50, 20, 10);
-	floor.color.r = 0;
-	floor.color.g = 256;
-	floor.color.b = 0;
-	floor.Render();
+	//Floor
+	Cube f1(10, 0.5, 160);
+	f1.SetPos(0, 20, -5);
+	f1.color.r = 0;
+	f1.color.g = 1;
+	f1.color.b = 0;
+	f1.Render();
 
+	Cube f2(30, 0.5, 10);
+	f2.SetPos(-20, 20, 70);
+	f2.color.r = 0;
+	f2.color.g = 1;
+	f2.color.b = 0;
+	f2.Render();
+
+	Cube f3(10, 0.5, 30);
+	f3.SetPos(-30, 20, 90);
+	f3.color.r = 0;
+	f3.color.g = 1;
+	f3.color.b = 0;
+	f3.Render();
+
+	Cube f4(30, 0.5, 10);
+	f4.SetPos(-45, 20, 100);
+	f4.color.r = 0;
+	f4.color.g = 1;
+	f4.color.b = 0;
+	f4.Render();
+
+	Cube f4_(20, 0.5, 10);
+	f4_.SetPos(-85, 20, 100);
+	f4_.color.r = 0;
+	f4_.color.g = 1;
+	f4_.color.b = 0;
+	f4_.Render();
+
+	Cube f5(10, 0.5, 50);
+	f5.SetPos(-90, 20, 70);
+	f5.color.r = 0;
+	f5.color.g = 1;
+	f5.color.b = 0;
+	f5.Render();
+
+	Cube f6(15, 0.5, 10);
+	f6.SetPos(-77.5, 20, 50);
+	f6.color.r = 0;
+	f6.color.g = 1;
+	f6.color.b = 0;
+	f6.Render();
+
+	Cube f7(10, 0.5, 30);
+	f7.SetPos(-75, 20, 70);
+	f7.color.r = 0;
+	f7.color.g = 1;
+	f7.color.b = 0;
+	f7.Render();
+
+	Cube f8(25, 0.5, 10);
+	f8.SetPos(-57.5, 20, 80);
+	f8.color.r = 0;
+	f8.color.g = 1;
+	f8.color.b = 0;
+	f8.Render();
+
+	Cube f9(10, 0.5, 50);
+	f9.SetPos(-50, 20, 50);
+	f9.color.r = 0;
+	f9.color.g = 1;
+	f9.color.b = 0;
+	f9.Render();
+
+	Cube f10(25, 0.5, 10);
+	f10.SetPos(-67.5, 20, 30);
+	f10.color.r = 0;
+	f10.color.g = 1;
+	f10.color.b = 0;
+	f10.Render();
+
+	Cube f11(10, 0.5, 65);
+	f11.SetPos(-75, 20, -7.5);
+	f11.color.r = 0;
+	f11.color.g = 1;
+	f11.color.b = 0;
+	f11.Render();
+
+	Cube f12(25, 0.5, 10);
+	f12.SetPos(-92.5, 20, -35);
+	f12.color.r = 0;
+	f12.color.g = 1;
+	f12.color.b = 0;
+	f12.Render();
+
+	Cube f13(10, 0.5, 45);
+	f13.SetPos(-100, 20, -62.5);
+	f13.color.r = 0;
+	f13.color.g = 1;
+	f13.color.b = 0;
+	f13.Render();
+
+	Cube f14(55, 0.5, 10);
+	f14.SetPos(-50, 13.3, -80);
+	f14.color.r = 0;
+	f14.color.g = 1;
+	f14.color.b = 0;
+	f14.Render();
+
+	//Water
+
+	Cube w1(90, 1, 10);
+	w1.SetPos(-50, 20, -80);
+	w1.color.r = 0;
+	w1.color.g = 1;
+	w1.color.b = 256;
+	w1.Render();
+	
+	Cube w2(65, 0.5, 100);
+	w2.SetPos(-37.5, 19, -25);
+	w2.color.r = 0;
+	w2.color.g = 1;
+	w2.color.b = 256;
+	w2.Render();
+
+	Cube w3(25, 0.5, 35);
+	w3.SetPos(-82.5, 19, -57.5);
+	w3.color.r = 0;
+	w3.color.g = 1;
+	w3.color.b = 256;
+	w3.Render();
+
+	Cube w4(40, 0.5, 45);
+	w4.SetPos(-25, 19, 42.5);
+	w4.color.r = 0;
+	w4.color.g = 1;
+	w4.color.b = 256;
+	w4.Render();
+
+	Cube w5(10, 0.5, 30);
+	w5.SetPos(-40, 19, 80);
+	w5.color.r = 0;
+	w5.color.g = 1;
+	w5.color.b = 256;
+	w5.Render();
+
+	Cube w6(50, 0.5, 10);
+	w6.SetPos(-60, 19, 90);
+	w6.color.r = 0;
+	w6.color.g = 1;
+	w6.color.b = 256;
+	w6.Render();
+
+	Cube w7(5, 0.5, 30);
+	w7.SetPos(-82.5, 19, 70);
+	w7.color.r = 0;
+	w7.color.g = 1;
+	w7.color.b = 256;
+	w7.Render();
+		
 	//Limits circuit
 	Cube r1(0.5, 2, 160);
 	r1.SetPos(5, 20, -5);
-	r1.color.r = 256;
+	r1.color.r = 1;
 	r1.color.g = 0;
 	r1.color.b = 0;
 	r1.Render();
 
 	Cube r2(0.5, 2, 140);
 	r2.SetPos(-5, 20, -5);
-	r2.color.r = 256;
+	r2.color.r = 1;
 	r2.color.g = 0;
 	r2.color.b = 0;
 	r2.Render();
 
 	Cube r3(30, 2, 0.5);
 	r3.SetPos(-10, 20, 75);
-	r3.color.r = 256;
+	r3.color.r = 1;
 	r3.color.g = 0;
 	r3.color.b = 0;
 	r3.Render();
 
 	Cube r4(30, 2, 0.5);
 	r4.SetPos(-20, 20, 65);
-	r4.color.r = 256;
+	r4.color.r = 1;
 	r4.color.g = 0;
 	r4.color.b = 0;
 	r4.Render();
 
 	Cube r5(0.5, 2, 30);
 	r5.SetPos(-35, 20, 80);
-	r5.color.r = 256;
+	r5.color.r = 1;
 	r5.color.g = 0;
 	r5.color.b = 0;
 	r5.Render();
 	
 	Cube r6(0.5, 2, 30);
 	r6.SetPos(-25, 20, 90);
-	r6.color.r = 256;
+	r6.color.r = 1;
 	r6.color.g = 0;
 	r6.color.b = 0;
 	r6.Render();
 
 	Cube r7(50, 2, 0.5);
 	r7.SetPos(-60, 20, 95);
-	r7.color.r = 256;
+	r7.color.r = 1;
 	r7.color.g = 0;
 	r7.color.b = 0;
 	r7.Render();
 	
 	Cube r8(70, 2, 0.5);
 	r8.SetPos(-60, 20, 105);
-	r8.color.r = 256;
+	r8.color.r = 1;
 	r8.color.g = 0;
 	r8.color.b = 0;
 	r8.Render();
 
 	Cube r9(0.5, 2, 40);
 	r9.SetPos(-85, 20, 75);
-	r9.color.r = 256;
+	r9.color.r = 1;
 	r9.color.g = 0;
 	r9.color.b = 0;
 	r9.Render();
 
 	Cube r10(0.5, 2, 60);
 	r10.SetPos(-95, 20, 75);
-	r10.color.r = 256;
+	r10.color.r = 1;
 	r10.color.g = 0;
 	r10.color.b = 0;
 	r10.Render();
 
 	Cube r11(5, 2, 0.5);
 	r11.SetPos(-82.5, 20, 55);
-	r11.color.r = 256;
+	r11.color.r = 1;
 	r11.color.g = 0;
 	r11.color.b = 0;
 	r11.Render();
 
 	Cube r12(25, 2, 0.5);
 	r12.SetPos(-82.5, 20, 45);
-	r12.color.r = 256;
+	r12.color.r = 1;
 	r12.color.g = 0;
 	r12.color.b = 0;
 	r12.Render();
 
 	Cube r13(0.5, 2, 30);
 	r13.SetPos(-80, 20, 70);
-	r13.color.r = 256;
+	r13.color.r = 1;
 	r13.color.g = 0;
 	r13.color.b = 0;
 	r13.Render();
 
 	Cube r14(0.5, 2, 30);
 	r14.SetPos(-70, 20, 60);
-	r14.color.r = 256;
+	r14.color.r = 1;
 	r14.color.g = 0;
 	r14.color.b = 0;
 	r14.Render();
 
 	Cube r15(35, 2, 0.5);
 	r15.SetPos(-62.5, 20, 85);
-	r15.color.r = 256;
+	r15.color.r = 1;
 	r15.color.g = 0;
 	r15.color.b = 0;
 	r15.Render();
 
 	Cube r16(15, 2, 0.5);
 	r16.SetPos(-62.5, 20, 75);
-	r16.color.r = 256;
+	r16.color.r = 1;
 	r16.color.g = 0;
 	r16.color.b = 0;
 	r16.Render();
 
 	Cube r17(0.5, 2, 40);
 	r17.SetPos(-55, 20, 55);
-	r17.color.r = 256;
+	r17.color.r = 1;
 	r17.color.g = 0;
 	r17.color.b = 0;
 	r17.Render();
 
 	Cube r18(0.5, 2, 60);
 	r18.SetPos(-45, 20, 55);
-	r18.color.r = 256;
+	r18.color.r = 1;
 	r18.color.g = 0;
 	r18.color.b = 0;
 	r18.Render();
 
 	Cube r19(25, 2, 0.5);
 	r19.SetPos(-67.5, 20, 35);
-	r19.color.r = 256;
+	r19.color.r = 1;
 	r19.color.g = 0;
 	r19.color.b = 0;
 	r19.Render();
 
 	Cube r20(25, 2, 0.5);
 	r20.SetPos(-57.5, 20, 25);
-	r20.color.r = 256;
+	r20.color.r = 1;
 	r20.color.g = 0;
 	r20.color.b = 0;
 	r20.Render();
 
 	Cube r21(0.5, 2, 65);
 	r21.SetPos(-80, 20, 2.5);
-	r21.color.r = 256;
+	r21.color.r = 1;
 	r21.color.g = 0;
 	r21.color.b = 0;
 	r21.Render();
 
 	Cube r22(0.5, 2, 65);
 	r22.SetPos(-70, 20, -7.5);
-	r22.color.r = 256;
+	r22.color.r = 1;
 	r22.color.g = 0;
 	r22.color.b = 0;
 	r22.Render();
 
 	Cube r23(25, 2, 0.5);
 	r23.SetPos(-82.5, 20, -40);
-	r23.color.r = 256;
+	r23.color.r = 1;
 	r23.color.g = 0;
 	r23.color.b = 0;
 	r23.Render();
 
 	Cube r24(25, 2, 0.5);
 	r24.SetPos(-92.5, 20, -30);
-	r24.color.r = 256;
+	r24.color.r = 1;
 	r24.color.g = 0;
 	r24.color.b = 0;
 	r24.Render();
 
 	Cube r25(0.5, 2, 55);
 	r25.SetPos(-105, 20, -57.5);
-	r25.color.r = 256;
+	r25.color.r = 1;
 	r25.color.g = 0;
 	r25.color.b = 0;
 	r25.Render();
 
 	Cube r26(0.5, 2, 35);
 	r26.SetPos(-95, 20, -57.5);
-	r26.color.r = 256;
+	r26.color.r = 1;
 	r26.color.g = 0;
 	r26.color.b = 0;
 	r26.Render();
 
 	Cube r27(90, 2, 0.5);
 	r27.SetPos(-50, 20, -75);
-	r27.color.r = 256;
+	r27.color.r = 1;
 	r27.color.g = 0;
 	r27.color.b = 0;
 	r27.Render();
 
 	Cube r28(110, 2, 0.5);
 	r28.SetPos(-50, 20, -85);
-	r28.color.r = 256;
+	r28.color.r = 1;
 	r28.color.g = 0;
 	r28.color.b = 0;
 	r28.Render();
 
 	//Rampes
-	Cube ramp(10, 1, 10);
-	ramp.SetPos(-60, 20, 100);
-	ramp.SetRotation(15, { 0, 0, -1 });
-	ramp.color.r = 256;
-	ramp.color.g = 0;
-	ramp.color.b = 0;
-	ramp.Render();
+	Cube ramp1(10, 1, 10);
+	ramp1.SetPos(-60, 20, 100);
+	ramp1.SetRotation(15, { 0, 0, -1 });
+	ramp1.color.r = 0;
+	ramp1.color.g = 1;
+	ramp1.color.b = 0;
+	ramp1.Render();
+
+	Cube ramp2(20, 0.5, 10);
+	ramp2.SetPos(-86, 16.6, -80);
+	ramp2.SetRotation(20, { 0, 0, -1 });
+	ramp2.color.r = 0;
+	ramp2.color.g = 1;
+	ramp2.color.b = 0;
+	ramp2.Render();
+
+	Cube ramp3(20, 0.5, 10);
+	ramp3.SetPos(-14, 16.7, -80);
+	ramp3.SetRotation(20, { 0, 0, 1 });
+	ramp3.color.r = 0;
+	ramp3.color.g = 1;
+	ramp3.color.b = 0;
+	ramp3.Render();
+
+	
 
 	return UPDATE_CONTINUE;
 }

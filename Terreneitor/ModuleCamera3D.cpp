@@ -54,7 +54,7 @@ update_status ModuleCamera3D::Update(float dt)
 	}
 	//Stop Camera Follow
 	if (isfollowing == false) {
-		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT) newPos -= Z * speed /** 15*/;
+		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT) newPos -= Z * speed/* * 15*/;
 		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT) newPos += Z * speed/* * 15*/;
 
 
