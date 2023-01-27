@@ -61,6 +61,6 @@ public:
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
 
-	PhysBody3D* square;
-	Cube floor_;
+	PhysBody3D* sensorsorra;
+
 };

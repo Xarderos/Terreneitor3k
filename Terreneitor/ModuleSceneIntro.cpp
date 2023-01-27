@@ -78,8 +78,11 @@ bool ModuleSceneIntro::Start()
 	CreateRamp({ -50, 20, 100 }, { 10, 1, 10 }, White, 15, { 0, 0, -1 });
 	CreateRamp({ -86, 16.6, -80 }, { 20, 0.5, 10 }, White, 20, { 0, 0, -1 });
 	CreateRamp({ -14, 16.7, -80 }, { 20, 0.5, 10 }, White, 20, { 0, 0, 1 });
+	Cube sorra(10, 4, 50);
 
-
+	sensorsorra = App->physics->AddBody(sorra, 0.00);
+	sensorsorra->SetAsSensor(true);
+	sensorsorra->SetPos(-90, 21, 70);
 	App->camera->Move(vec3(1.0f, 30.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 30, 0));
 
@@ -128,7 +131,6 @@ update_status ModuleSceneIntro::Update(float dt)
 		move.y = move.y + 5;
 		App->camera->Look(move, look, true);
 	}
-
 
 	//Meta
 
@@ -658,10 +660,13 @@ update_status ModuleSceneIntro::Update(float dt)
 	t10.color.b = 1;
 	t10.Render();
 	
-
+	
 	return UPDATE_CONTINUE;
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
+	if (body2 == sensorsorra) {
+		App->camera->isfollowing = false;
+	}
 }
