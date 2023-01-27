@@ -10,8 +10,8 @@ vec3 BtToVec(btVector3 A) {
 	vec3 B;
 	B.x = A.x();
 	B.y = A.y();
-	B.z = A.z();
-	return B;
+	B.z = A.z(); 
+	return B; 
 }
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -30,8 +30,8 @@ bool ModuleSceneIntro::Start()
 	CreateCollision({ 0, 20, -5 }, { 10, 0.5, 160 }, White);
 	CreateCollision({ -20, 20, 70 }, { 30, 0.5, 10 }, White);
 	CreateCollision({ -30, 20, 90 }, { 10, 0.5, 30 }, White);
-	CreateCollision({ -47.5, 20, 100 }, { 25, 0.5, 10 }, White);
-	CreateCollision({ -85, 20, 100 }, { 20, 0.5, 10 }, White);
+	CreateCollision({ -42.5, 20, 100 }, { 15, 0.5, 10 }, White);
+	CreateCollision({ -80, 20, 100 }, { 30, 0.5, 10 }, White);
 	CreateCollision({ -90, 20, 70 }, { 10, 0.5, 50 }, White);
 	CreateCollision({ -77.5, 20, 50 }, { 15, 0.5, 10 }, White);
 	CreateCollision({ -75, 20, 70 }, { 10, 0.5, 30 }, White);
@@ -75,7 +75,7 @@ bool ModuleSceneIntro::Start()
 	CreateCollision({ 5, 20, -80 }, { 0.5, 2, 10 }, White);
 	
 	//Hitbox ramps
-	CreateRamp({ -60, 20, 100 }, { 10, 1, 10 }, White, 15, { 0, 0, -1 });
+	CreateRamp({ -50, 20, 100 }, { 10, 1, 10 }, White, 15, { 0, 0, -1 });
 	CreateRamp({ -86, 16.6, -80 }, { 20, 0.5, 10 }, White, 20, { 0, 0, -1 });
 	CreateRamp({ -14, 16.7, -80 }, { 20, 0.5, 10 }, White, 20, { 0, 0, 1 });
 
@@ -121,8 +121,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();*/
 
-	vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
-	App->camera->LookAt(look);
+	/*vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
+	App->camera->LookAt(look);*/
 
 	//Meta
 
@@ -173,15 +173,15 @@ update_status ModuleSceneIntro::Update(float dt)
 	f3.color.b = 0;
 	f3.Render();
 
-	Cube f4(30, 0.5, 10);
-	f4.SetPos(-45, 20, 100);
+	Cube f4(15, 0.5, 10);
+	f4.SetPos(-42.5, 20, 100);
 	f4.color.r = 0;
 	f4.color.g = 1;
 	f4.color.b = 0;
 	f4.Render();
 
-	Cube f4_(20, 0.5, 10);
-	f4_.SetPos(-85, 20, 100);
+	Cube f4_(30, 0.5, 10);
+	f4_.SetPos(-80, 20, 100);
 	f4_.color.r = 0;
 	f4_.color.g = 1;
 	f4_.color.b = 0;
@@ -189,7 +189,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	Cube f5(10, 0.5, 50);
 	f5.SetPos(-90, 20, 70);
-	f5.color.r = 0;
+	f5.color.r = 1;
 	f5.color.g = 1;
 	f5.color.b = 0;
 	f5.Render();
@@ -233,7 +233,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	f11.SetPos(-75, 20, -7.5);
 	f11.color.r = 0;
 	f11.color.g = 1;
-	f11.color.b = 0;
+	f11.color.b = 1;
 	f11.Render();
 
 	Cube f12(25, 0.5, 10);
@@ -557,7 +557,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	//Rampes
 	Cube ramp1(10, 1, 10);
-	ramp1.SetPos(-60, 20, 100);
+	ramp1.SetPos(-50, 20, 100);
 	ramp1.SetRotation(15, { 0, 0, -1 });
 	ramp1.color.r = 0;
 	ramp1.color.g = 1;
@@ -638,7 +638,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	t8.color.b = 1;
 	t8.Render();
 
-	Cube t9(15, 0.5, 35);
+	Cube t9(15, 0.5, 30);
 	t9.SetPos(-62.5, 20, 60);
 	t9.color.r = 1;
 	t9.color.g = 0;
