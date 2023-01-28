@@ -201,7 +201,10 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	if (App->LooseCondition == false) {
+		sprintf_s(title, "%.1f Km/h - TIME LEFT: %d", vehicle->GetKmh(), App->countdown);
+	}
+	else{ sprintf_s(title, "%.1f Km/h - YOU LOOSE", vehicle->GetKmh()); }
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;

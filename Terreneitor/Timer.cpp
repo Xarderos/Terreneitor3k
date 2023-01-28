@@ -25,6 +25,11 @@ void Timer::Stop()
 	stopped_at = SDL_GetTicks();
 }
 
+Uint32 Timer::ReadSec() const
+{
+	return (SDL_GetTicks() - started_at) / 1000;
+}
+
 // ---------------------------------------------
 Uint32 Timer::Read()
 {

@@ -64,6 +64,7 @@ bool Application::Init()
 		item = item->next;
 	}
 	
+	startupTime.Start();
 	ms_timer.Start();
 	return ret;
 }
@@ -73,6 +74,11 @@ void Application::PrepareUpdate()
 {
 	dt = (float)ms_timer.Read() / 1000.0f;
 	ms_timer.Start();
+
+	if (startupTime.ReadSec() <= 60) {
+		countdown = 60 - startupTime.ReadSec();
+	}
+	else { LooseCondition = true; }
 }
 
 // ---------------------------------------------

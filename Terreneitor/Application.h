@@ -25,9 +25,13 @@ public:
 	ModulePhysics3D* physics;
 	ModulePlayer* player;
 
+	int	countdown;
+	bool LooseCondition = false;
+
 private:
 
 	Timer	ms_timer;
+	Timer	startupTime;
 	float	dt;
 	p2List<Module*> list_modules;
 
