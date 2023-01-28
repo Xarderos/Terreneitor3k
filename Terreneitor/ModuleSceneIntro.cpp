@@ -87,7 +87,9 @@ bool ModuleSceneIntro::Start()
 	sensorsorra->collision_listeners.add(this);
 	App->camera->Move(vec3(1.0f, 30.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 30, 0));
-
+	onsand = false;
+	onfan = false;
+	onice = false;
 	return ret;
 }
 
@@ -130,11 +132,13 @@ update_status ModuleSceneIntro::Update(float dt)
 	if(App->camera->isfollowing == true){
 		
 		vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
-		App->camera->LookAt(look);
 		if (App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().y() > 2) {
 			vec3 move = look - 10 * BtToVec(App->player->vehicle->vehicle->getForwardVector());
 			move.y = move.y + 5;
 			App->camera->Look(move, look, true);
+		}
+		else {
+			App->camera->LookAt(look);
 		}
 	}
 

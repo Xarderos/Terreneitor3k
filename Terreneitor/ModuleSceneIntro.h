@@ -63,4 +63,8 @@ public:
 
 	PhysBody3D* sensorsorra;
 
+	bool onsand;
+	bool onfan;
+	bool onice;
+
 };
