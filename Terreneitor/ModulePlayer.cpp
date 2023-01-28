@@ -159,14 +159,10 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
-
-	float turbo = 0.0f;
 	
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT) { turbo = 500.0f; }
-
-		acceleration = MAX_ACCELERATION + turbo;
+		acceleration = MAX_ACCELERATION;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -204,7 +200,8 @@ update_status ModulePlayer::Update(float dt)
 	if (App->LooseCondition == false) {
 		sprintf_s(title, "%.1f Km/h - TIME LEFT: %d", vehicle->GetKmh(), App->countdown);
 	}
-	else{ sprintf_s(title, "%.1f Km/h - YOU LOOSE", vehicle->GetKmh()); }
+	else { sprintf_s(title, "%.1f Km/h - YOU LOOSE", vehicle->GetKmh()); }
+
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
