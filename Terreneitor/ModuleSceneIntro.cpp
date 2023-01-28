@@ -82,7 +82,9 @@ bool ModuleSceneIntro::Start()
 
 	sensorsorra = App->physics->AddBody(sorra, 0.00);
 	sensorsorra->SetAsSensor(true);
-	sensorsorra->SetPos(-90, 21, 70);
+	//sensorsorra->SetPos(-90, 21, 70);//Real
+	sensorsorra->SetPos(0, 21, 30);//Prova
+	sensorsorra->collision_listeners.add(this);
 	App->camera->Move(vec3(1.0f, 30.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 30, 0));
 
@@ -123,13 +125,17 @@ update_status ModuleSceneIntro::Update(float dt)
 	/*Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();*/
+	
 
 	if(App->camera->isfollowing == true){
+		
 		vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
 		App->camera->LookAt(look);
-		vec3 move = look - 10 * BtToVec(App->player->vehicle->vehicle->getForwardVector());
-		move.y = move.y + 5;
-		App->camera->Look(move, look, true);
+		if (App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().y() > 2) {
+			vec3 move = look - 10 * BtToVec(App->player->vehicle->vehicle->getForwardVector());
+			move.y = move.y + 5;
+			App->camera->Look(move, look, true);
+		}
 	}
 
 	//Meta

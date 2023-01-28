@@ -54,7 +54,6 @@ bool ModulePhysics3D::Start()
 	world->setDebugDrawer(debug_draw);
 	world->setGravity(GRAVITY);
 	vehicle_raycaster = new btDefaultVehicleRaycaster(world);
-
 	// Big plane as ground
 
 

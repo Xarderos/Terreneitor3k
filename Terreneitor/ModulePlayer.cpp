@@ -140,10 +140,8 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-
 	vehicle->collision_listeners.add(App->scene_intro);
 	vehicle->collision_listeners.add(this);
-
 	vehicle->SetPos(0, 20, -10);
 	
 	return true;
@@ -163,7 +161,7 @@ update_status ModulePlayer::Update(float dt)
 	turn = acceleration = brake = 0.0f;
 
 	float turbo = 0.0f;
-
+	
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT) { turbo = 500.0f; }
