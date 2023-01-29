@@ -141,7 +141,7 @@ bool ModulePlayer::Start()
 
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->collision_listeners.add(App->scene_intro);
-	vehicle->collision_listeners.add(this);
+
 	vehicle->SetPos(0, 20, -10);
 	
 	return true;
@@ -190,20 +190,20 @@ update_status ModulePlayer::Update(float dt)
 		brake = BRAKE_POWER;
 	}
 	if (App->scene_intro->onsand == true) {
-
-		acceleration = acceleration / 100;
+		brake = 16;
 	}
-
+	App->scene_intro->onsand = false;
 	if (App->scene_intro->onice == true) {
 
-		acceleration = acceleration*100;
+		acceleration = acceleration*4;
 
 	}
-
+	App->scene_intro->onice = false;
 	if (App->scene_intro->onfan == true) {
 		if (turn < TURN_DEGREES)
 			turn += TURN_DEGREES/2;
 	}
+	App->scene_intro->onfan = false;
 	
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);

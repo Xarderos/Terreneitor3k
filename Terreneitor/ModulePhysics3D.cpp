@@ -18,7 +18,7 @@
 ModulePhysics3D::ModulePhysics3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	debug = false;
-
+	
 	collision_conf = new btDefaultCollisionConfiguration();
 	dispatcher = new btCollisionDispatcher(collision_conf);
 	broad_phase = new btDbvtBroadphase();
@@ -105,7 +105,15 @@ update_status ModulePhysics3D::Update(float dt)
 {
 	if(App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		debug = !debug;
-
+	if (App->scene_intro->onwater == true) {
+		world->setGravity({ 0, -1,0 });
+		world->applyGravity();
+	}
+	else {
+		world->setGravity(GRAVITY);
+		world->applyGravity();
+	}
+	App->scene_intro->onwater = false;
 	if(debug == true)
 	{
 		world->debugDrawWorld();
@@ -348,6 +356,7 @@ PhysVehicle3D* ModulePhysics3D::AddVehicle(const VehicleInfo& info)
 	// ---------------------
 
 	PhysVehicle3D* pvehicle = new PhysVehicle3D(body, vehicle, info);
+	body->setUserPointer(pvehicle);
 	world->addVehicle(vehicle);
 	vehicles.add(pvehicle);
 

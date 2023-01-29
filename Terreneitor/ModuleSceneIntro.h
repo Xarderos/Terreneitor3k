@@ -62,9 +62,12 @@ public:
 	PhysMotor3D* right_wheel;
 
 	PhysBody3D* sensorsorra;
+	PhysBody3D* sensorgel;
+	PhysBody3D* sensoraigua;
 
 	bool onsand;
 	bool onfan;
 	bool onice;
+	bool onwater;
 
 };

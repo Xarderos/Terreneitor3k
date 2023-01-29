@@ -78,13 +78,25 @@ bool ModuleSceneIntro::Start()
 	CreateRamp({ -50, 20, 100 }, { 10, 1, 10 }, White, 15, { 0, 0, -1 });
 	CreateRamp({ -86, 16.6, -80 }, { 20, 0.5, 10 }, White, 20, { 0, 0, -1 });
 	CreateRamp({ -14, 16.7, -80 }, { 20, 0.5, 10 }, White, 20, { 0, 0, 1 });
+	
 	Cube sorra(10, 4, 50);
-
 	sensorsorra = App->physics->AddBody(sorra, 0.00);
 	sensorsorra->SetAsSensor(true);
-	//sensorsorra->SetPos(-90, 21, 70);//Real
-	sensorsorra->SetPos(0, 21, 30);//Prova
+	sensorsorra->SetPos(-90, 21, 70);//Real
 	sensorsorra->collision_listeners.add(this);
+
+	Cube ice(10,4,65);
+	sensorgel = App->physics->AddBody(ice, 0.0);
+	sensorgel->SetAsSensor(true);
+	sensorgel->SetPos(-75,21,-7.5);
+	sensorgel->collision_listeners.add(this);
+
+	Cube aigua(90, 7, 10);
+	sensoraigua = App->physics->AddBody(aigua, 0.0);
+	sensoraigua->SetAsSensor(true);
+	sensoraigua->SetPos(-50, 17, -80);
+	sensoraigua->collision_listeners.add(this);
+
 	App->camera->Move(vec3(1.0f, 30.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 30, 0));
 	onsand = false;
@@ -669,14 +681,19 @@ update_status ModuleSceneIntro::Update(float dt)
 	t10.color.g = 0;
 	t10.color.b = 1;
 	t10.Render();
-	
-	
+
 	return UPDATE_CONTINUE;
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	if (body2 == sensorsorra) {
-		App->camera->isfollowing = false;
+		onsand = true;
+	}
+	if (body2 == sensorgel) {
+		onice = true;
+	}
+	if (body2 == sensoraigua) {
+		onwater = true;
 	}
 }
