@@ -82,7 +82,7 @@ bool ModuleSceneIntro::Start()
 	Cube sorra(10, 4, 50);
 	sensorsorra = App->physics->AddBody(sorra, 0.00);
 	sensorsorra->SetAsSensor(true);
-	sensorsorra->SetPos(-90, 21, 70);//Real
+	sensorsorra->SetPos(-90, 21, 70);
 	sensorsorra->collision_listeners.add(this);
 
 	Cube ice(10,4,65);
@@ -96,6 +96,12 @@ bool ModuleSceneIntro::Start()
 	sensoraigua->SetAsSensor(true);
 	sensoraigua->SetPos(-50, 17, -80);
 	sensoraigua->collision_listeners.add(this);
+
+	Cube vent(10, 5, 20);
+	sensorvent = App->physics->AddBody(vent, 0.0);
+	sensorvent->SetAsSensor(true);
+	sensorvent->SetPos(0, 19, -55);
+	sensorvent->collision_listeners.add(this);
 
 	App->camera->Move(vec3(1.0f, 30.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 30, 0));
@@ -696,5 +702,8 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	}
 	if (body2 == sensoraigua) {
 		onwater = true;
+	}
+	if (body2 == sensorvent) {
+		onfan = true;
 	}
 }

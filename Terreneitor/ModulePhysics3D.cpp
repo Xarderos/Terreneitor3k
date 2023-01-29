@@ -108,7 +108,7 @@ update_status ModulePhysics3D::Update(float dt)
 	
 	if (change != App->scene_intro->onwater) {
 		if (App->scene_intro->onwater == true) {
-			world->setGravity({ 0, -1,0 });
+			world->setGravity({ 0, -2,0 });
 		}
 		else {
 			world->setGravity(GRAVITY);

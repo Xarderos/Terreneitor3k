@@ -64,6 +64,7 @@ public:
 	PhysBody3D* sensorsorra;
 	PhysBody3D* sensorgel;
 	PhysBody3D* sensoraigua;
+	PhysBody3D* sensorvent;
 
 	bool onsand;
 	bool onfan;
