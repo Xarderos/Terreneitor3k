@@ -55,6 +55,7 @@ bool ModulePhysics3D::Start()
 	world->setGravity(GRAVITY);
 	vehicle_raycaster = new btDefaultVehicleRaycaster(world);
 	// Big plane as ground
+	change = false;
 
 
 	return true;
@@ -96,7 +97,6 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 			}
 		}
 	}
-
 	return UPDATE_CONTINUE;
 }
 
@@ -105,15 +105,22 @@ update_status ModulePhysics3D::Update(float dt)
 {
 	if(App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		debug = !debug;
-	if (App->scene_intro->onwater == true) {
-		world->setGravity({ 0, -1,0 });
+	
+	if (change != App->scene_intro->onwater) {
+		if (App->scene_intro->onwater == true) {
+			world->setGravity({ 0, -1,0 });
+		}
+		else {
+			world->setGravity(GRAVITY);
+		}
 		world->applyGravity();
+
 	}
-	else {
-		world->setGravity(GRAVITY);
-		world->applyGravity();
-	}
+	change = App->scene_intro->onwater;
 	App->scene_intro->onwater = false;
+
+	world->applyGravity();
+
 	if(debug == true)
 	{
 		world->debugDrawWorld();

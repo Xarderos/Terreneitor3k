@@ -102,6 +102,7 @@ bool ModuleSceneIntro::Start()
 	onsand = false;
 	onfan = false;
 	onice = false;
+	onwater = false;
 	return ret;
 }
 
