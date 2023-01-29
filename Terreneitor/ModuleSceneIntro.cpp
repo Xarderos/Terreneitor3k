@@ -161,6 +161,57 @@ update_status ModuleSceneIntro::Update(float dt)
 		}
 	}
 
+	//Fan
+
+	Cube fan1(2, 11, 16);
+	fan1.SetPos(-8, 25, -55);
+	fan1.color.r = 1;
+	fan1.color.g = 1;
+	fan1.color.b = 1;
+	fan1.Render();
+
+	Cylinder fan2(4.5, 1);
+	fan2.SetPos(-6, 25, -55);
+	fan2.SetRotation(0, { 0, 0, 1 });
+	fan2.color.r = 0;
+	fan2.color.g = 0;
+	fan2.color.b = 0;
+	fan2.Render();
+
+	Cylinder fan3(1, 1);
+	fan3.SetPos(-5.6, 25, -55);
+	fan3.SetRotation(0, { 0, 0, 1 });
+	fan3.color.r = 256;
+	fan3.color.g = 256;
+	fan3.color.b = 256;
+	fan3.Render();
+
+	Cube fan4(1, 0.8, 4);
+	fan4.SetPos(-5.6, 27, -55);
+	fan4.SetRotation(90, { 1, 0, 0 });
+	fan4.color.r = 1;
+	fan4.color.g = 1;
+	fan4.color.b = 1;
+	fan4.Render();
+
+	Cube fan5(1, 0.8, 4);
+	fan5.SetPos(-5.6, 24, -56.5);
+	fan5.SetRotation(330, { 1, 0, 0 });
+	fan5.color.r = 1;
+	fan5.color.g = 1;
+	fan5.color.b = 1;
+	fan5.Render();
+
+	Cube fan6(1, 0.8, 4);
+	fan6.SetPos(-5.6, 24, -53.5);
+	fan6.SetRotation(210, { 1, 0, 0 });
+	fan6.color.r = 1;
+	fan6.color.g = 1;
+	fan6.color.b = 1;
+	fan6.Render();
+
+
+
 	//Meta
 
 	Cylinder c1(0.2, 7);
@@ -324,7 +375,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	sand2.color.b = 0;
 	sand2.Render();
 
-	Cylinder tree1(0.4, 7);
+	Cylinder tree1(0.4, 8);
 	tree1.SetPos(-32.5, 24, -28);
 	tree1.SetRotation(90, { 0, 0, 1 });
 	tree1.color.r = 0;
