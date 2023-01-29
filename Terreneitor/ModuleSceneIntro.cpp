@@ -70,9 +70,9 @@ bool ModuleSceneIntro::Start()
 	CreateCollision({ -92.5, 20, -30 }, { 25, 2, 0.5 }, White);
 	CreateCollision({ -105, 20, -57.5 }, { 0.5, 2, 55 }, White);
 	CreateCollision({ -95, 20, -57.5 }, { 0.5, 2, 35 }, White);
-	CreateCollision({ -50, 20, -75 }, { 90, 2, 0.5 }, White);
-	CreateCollision({ -50, 20, -85 }, { 110, 2, 0.5 }, White);
-	CreateCollision({ 5, 20, -80 }, { 0.5, 2, 10 }, White);
+	CreateCollision({ -50, 17, -75 }, { 90, 8, 0.5 }, White);
+	CreateCollision({ -50, 17, -85 }, { 110, 8, 0.5 }, White);
+	CreateCollision({ 5, 22, -77.5 }, { 0.5, 6, 15 }, White);
 	
 	//Hitbox ramps
 	CreateRamp({ -50, 20, 100 }, { 10, 1, 10 }, White, 15, { 0, 0, -1 });
@@ -564,22 +564,22 @@ update_status ModuleSceneIntro::Update(float dt)
 	r26.color.b = 0;
 	r26.Render();
 
-	Cube r27(90, 2, 0.5);
-	r27.SetPos(-50, 20, -75);
+	Cube r27(90, 8, 0.5);
+	r27.SetPos(-50, 17, -75);
 	r27.color.r = 1;
 	r27.color.g = 0;
 	r27.color.b = 0;
 	r27.Render();
 
-	Cube r28(110, 2, 0.5);
-	r28.SetPos(-50, 20, -85);
+	Cube r28(110, 8, 0.5);
+	r28.SetPos(-50, 17, -85);
 	r28.color.r = 1;
 	r28.color.g = 0;
 	r28.color.b = 0;
 	r28.Render();
 
-	Cube r29(0.5, 2, 10);
-	r29.SetPos(5, 20, -80);
+	Cube r29(0.5, 6, 15);
+	r29.SetPos(5, 22, -77.5);
 	r29.color.r = 1;
 	r29.color.g = 0;
 	r29.color.b = 0;
