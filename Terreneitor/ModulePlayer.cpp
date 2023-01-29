@@ -16,6 +16,8 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
+	canmove = true;
+
 	LOG("Loading player");
 
 	VehicleInfo car;
@@ -158,6 +160,8 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+	
+
 	turn = acceleration = brake = 0.0f;
 	
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
@@ -204,6 +208,10 @@ update_status ModulePlayer::Update(float dt)
 			turn += TURN_DEGREES/2;
 	}
 	App->scene_intro->onfan = false;
+	if (App->scene_intro->onwin == true) {
+		App->scene_intro->victoria=true;
+	}
+	App->scene_intro->onwin = false;
 	
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);

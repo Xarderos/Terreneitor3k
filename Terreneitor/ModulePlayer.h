@@ -27,4 +27,6 @@ public:
 	float turn;
 	float acceleration;
 	float brake;
+
+	bool canmove;
 };

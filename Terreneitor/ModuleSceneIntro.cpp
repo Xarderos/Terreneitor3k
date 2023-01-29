@@ -5,6 +5,9 @@
 #include "PhysBody3D.h"
 #include "ModulePlayer.h"
 #include "PhysVehicle3D.h"
+#include "ModuleAudio.h"
+
+float loseTime = 10.0f;
 
 vec3 BtToVec(btVector3 A) {
 	vec3 B;
@@ -23,6 +26,10 @@ ModuleSceneIntro::~ModuleSceneIntro()
 // Load assets
 bool ModuleSceneIntro::Start()
 {
+	App->player->canmove = true;
+	canwin = false;
+	App->audio->PlayMusic("Audio/WaluigiPinball.wav");
+	temps.Start();
 	LOG("Loading Intro assets");
 	bool ret = true;
 
@@ -103,12 +110,19 @@ bool ModuleSceneIntro::Start()
 	sensorvent->SetPos(0, 19, -55);
 	sensorvent->collision_listeners.add(this);
 
+	Cube meta(10, 15, 3);
+	sensormeta = App->physics->AddBody(meta, 0.0);
+	sensormeta->SetAsSensor(true);
+	sensormeta->SetPos(0, 20, 0);
+	sensormeta->collision_listeners.add(this);
+
 	App->camera->Move(vec3(1.0f, 30.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 30, 0));
 	onsand = false;
 	onfan = false;
 	onice = false;
 	onwater = false;
+	onwin = false;
 	return ret;
 }
 
@@ -142,8 +156,23 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, Color bColor, 
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
+<<<<<<< Updated upstream
 	
 	//Camera
+=======
+	//temps.ReadSec();
+	//if (temps.ReadSec() >= 10) printf("Lose");//Lose
+
+	if (App->countdown <= 0) {
+		App->audio->PlayMusic("Audio/gameover.wav");
+		App->player->canmove = false;
+	}
+	/*Plane p(0, 1, 0, 0);
+	p.axis = true;
+	p.Render();*/
+	
+
+>>>>>>> Stashed changes
 	if(App->camera->isfollowing == true){
 		
 		vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
@@ -157,6 +186,7 @@ update_status ModuleSceneIntro::Update(float dt)
 		}
 	}
 
+<<<<<<< Updated upstream
 	//Constrain
 
 
@@ -214,6 +244,19 @@ update_status ModuleSceneIntro::Update(float dt)
 
 
 
+=======
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	{
+		//App->player->vehicle->SetLinearVelocity(0, 0, 0);
+		App->player->vehicle->SetPos(0, 20, -10);
+		App->player->acceleration = 0.0f;
+		App->player->turn = 0.0f;
+		App->player->canmove = true;
+		//App->audio->PlayMusic("Audio/WaluigiPinball.wav");
+		
+		//App->player->vehicle->setWorldTransform(defaultTransform);
+	}
+>>>>>>> Stashed changes
 	//Meta
 
 	Cylinder c1(0.2, 7);
@@ -758,5 +801,9 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	}
 	if (body2 == sensorvent) {
 		onfan = true;
+		canwin = true;
+	}
+	if (body2 == sensormeta) {
+		onwin = true;
 	}
 }
