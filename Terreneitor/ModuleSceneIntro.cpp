@@ -156,10 +156,7 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, Color bColor, 
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
-<<<<<<< Updated upstream
-	
 	//Camera
-=======
 	//temps.ReadSec();
 	//if (temps.ReadSec() >= 10) printf("Lose");//Lose
 
@@ -171,8 +168,6 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();*/
 	
-
->>>>>>> Stashed changes
 	if(App->camera->isfollowing == true){
 		
 		vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
@@ -186,7 +181,6 @@ update_status ModuleSceneIntro::Update(float dt)
 		}
 	}
 
-<<<<<<< Updated upstream
 	//Constrain
 
 
@@ -242,9 +236,6 @@ update_status ModuleSceneIntro::Update(float dt)
 	fan6.color.b = 1;
 	fan6.Render();
 
-
-
-=======
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 	{
 		//App->player->vehicle->SetLinearVelocity(0, 0, 0);
@@ -256,7 +247,6 @@ update_status ModuleSceneIntro::Update(float dt)
 		
 		//App->player->vehicle->setWorldTransform(defaultTransform);
 	}
->>>>>>> Stashed changes
 	//Meta
 
 	Cylinder c1(0.2, 7);
