@@ -143,11 +143,7 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, Color bColor, 
 update_status ModuleSceneIntro::Update(float dt)
 {
 	
-	/*Plane p(0, 1, 0, 0);
-	p.axis = true;
-	p.Render();*/
-	
-
+	//Camera
 	if(App->camera->isfollowing == true){
 		
 		vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
@@ -160,6 +156,12 @@ update_status ModuleSceneIntro::Update(float dt)
 			App->camera->LookAt(look);
 		}
 	}
+
+	//Constrain
+
+
+	//DeathField
+
 
 	//Fan
 
