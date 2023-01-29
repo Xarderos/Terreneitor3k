@@ -65,10 +65,16 @@ public:
 	PhysBody3D* sensorgel;
 	PhysBody3D* sensoraigua;
 	PhysBody3D* sensorvent;
+	PhysBody3D* sensormeta;
+	PhysBody3D* sensorrampa;
 
 	bool onsand;
 	bool onfan;
 	bool onice;
 	bool onwater;
 
+	bool firstwin;
+	bool win;
+	bool lose;
+	bool playmusic;
 };

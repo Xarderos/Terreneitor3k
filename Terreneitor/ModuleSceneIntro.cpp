@@ -5,7 +5,7 @@
 #include "PhysBody3D.h"
 #include "ModulePlayer.h"
 #include "PhysVehicle3D.h"
-
+#include "Timer.h"
 vec3 BtToVec(btVector3 A) {
 	vec3 B;
 	B.x = A.x();
@@ -103,12 +103,29 @@ bool ModuleSceneIntro::Start()
 	sensorvent->SetPos(0, 19, -55);
 	sensorvent->collision_listeners.add(this);
 
+	Cube meta(10, 15, 3);
+	sensormeta = App->physics->AddBody(meta, 0.0);
+	sensormeta->SetAsSensor(true);
+	sensormeta->SetPos(0, 20, 0);
+	sensormeta->collision_listeners.add(this);
+
+	Cube rampa(13, 15, 10);
+	sensorrampa = App->physics->AddBody(rampa, 0.0);
+	sensorrampa->SetAsSensor(true);
+	sensorrampa->SetPos(-60, 20, 100);
+	sensorrampa->collision_listeners.add(this);
+
 	App->camera->Move(vec3(1.0f, 30.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 30, 0));
 	onsand = false;
 	onfan = false;
 	onice = false;
 	onwater = false;
+	lose = false;
+	win = false;
+	firstwin = false;
+	playmusic = false;
+	App->audio->PlayMusic("Audio/WaluigiPinball.wav");
 	return ret;
 }
 
@@ -143,10 +160,42 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, Color bColor, 
 update_status ModuleSceneIntro::Update(float dt)
 {
 
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
 
+		App->player->vehicle->Push(0, 100, 0);
+		App->player->vehicle->SetPos(0, 24, -10);
+		onsand = false;
+		onfan = false;
+		onice = false;
+		onwater = false;
+		lose = false;
+		win = false;
+		firstwin = false;
+		playmusic = false;
+		App->camera->isfollowing = true;
+
+		App->audio->PlayMusic("Audio/WaluigiPinball.wav");
+		
+	}
 	
-	//Camera
-
+	if (App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().y() < 2) {
+		lose = true;
+		if (playmusic == false) {
+			App->audio->PlayMusic("Audio/gameover.wav");
+			playmusic = true;
+		}
+	}
+	if (App->countdown == 0) {
+		lose = true;
+		App->audio->PlayMusic("Audio/gameover.wav");
+	}
+	if (win == true)
+	{
+		if (playmusic == false) {
+			App->audio->PlayMusic("Audio/win.wav");
+			playmusic = true;
+		}
+	}
 	if(App->camera->isfollowing == true){
 		
 		vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
@@ -159,8 +208,9 @@ update_status ModuleSceneIntro::Update(float dt)
 			App->camera->LookAt(look);
 		}
 	}
-
-
+	if(App->input->GetKey(SDL_SCANCODE_Z)==KEY_IDLE)
+	App->camera->isfollowing = true;
+	
 	//Fan
 
 	Cube fan1(2, 11, 16);
@@ -754,5 +804,21 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	}
 	if (body2 == sensorvent) {
 		onfan = true;
+		firstwin = true;
+	}
+	if (body2 == sensormeta) {
+		if (firstwin == true) {
+			win = true;
+		}
+	}
+	if (body2 == sensorrampa) {
+		
+
+		App->camera->isfollowing = false;
+
+		vec3 look = BtToVec(App->player->vehicle->vehicle->getRigidBody()->getCenterOfMassPosition());
+		App->camera->Look({ -60, 25, 115 }, look);
+
+		
 	}
 }

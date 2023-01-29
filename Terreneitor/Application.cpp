@@ -63,7 +63,6 @@ bool Application::Init()
 		ret = item->data->Start();
 		item = item->next;
 	}
-	
 	startupTime.Start();
 	ms_timer.Start();
 	return ret;
@@ -74,11 +73,10 @@ void Application::PrepareUpdate()
 {
 	dt = (float)ms_timer.Read() / 1000.0f;
 	ms_timer.Start();
-
-	if (startupTime.ReadSec() <= 60) {
-		countdown = 60 - startupTime.ReadSec();
+	
+	if (startupTime.ReadSec() <= 80) {
+		countdown = 80 - startupTime.ReadSec();
 	}
-	else { LooseCondition = true; }
 }
 
 // ---------------------------------------------
@@ -93,7 +91,11 @@ update_status Application::Update()
 	PrepareUpdate();
 	
 	p2List_item<Module*>* item = list_modules.getFirst();
-	
+	if (input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
+			
+		startupTime.Start();
+
+	}
 	while(item != NULL && ret == UPDATE_CONTINUE)
 	{
 		ret = item->data->PreUpdate(dt);

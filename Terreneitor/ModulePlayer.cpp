@@ -143,7 +143,6 @@ bool ModulePlayer::Start()
 	vehicle->collision_listeners.add(App->scene_intro);
 
 	vehicle->SetPos(0, 20, -10);
-	
 	return true;
 }
 
@@ -159,65 +158,74 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
-	
-	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-	{
-		acceleration = MAX_ACCELERATION;
-	}
-
-	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-	{
-		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
-	}
-
-	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
-	}
-	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-		if (vehicle->GetKmh() > 10) {
-			acceleration = -MAX_ACCELERATION * 5;
+	if (App->scene_intro->win == false && App->scene_intro->win == false) {
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+		{
+			acceleration = MAX_ACCELERATION;
 		}
-		else if (vehicle->GetKmh() > -MAX_SPEED_BACKWARDS) {
-			acceleration = -MAX_ACCELERATION;
+
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		{
+			if (turn < TURN_DEGREES)
+				turn += TURN_DEGREES;
 		}
-	}
 
-	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
-	{
-		brake = BRAKE_POWER;
-	}
-	if (App->scene_intro->onsand == true) {
-		brake = 16;
-	}
-	App->scene_intro->onsand = false;
-	if (App->scene_intro->onice == true) {
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		{
+			if (turn > -TURN_DEGREES)
+				turn -= TURN_DEGREES;
+		}
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+			if (vehicle->GetKmh() > 10) {
+				acceleration = -MAX_ACCELERATION * 5;
+			}
+			else if (vehicle->GetKmh() > -MAX_SPEED_BACKWARDS) {
+				acceleration = -MAX_ACCELERATION;
+			}
+		}
 
-		acceleration = acceleration*4;
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+		{
+			brake = BRAKE_POWER;
+		}
+		if (App->scene_intro->onsand == true) {
+			brake = 16;
+		}
+		App->scene_intro->onsand = false;
+		if (App->scene_intro->onice == true) {
+
+			acceleration = acceleration * 4;
+
+		}
+		App->scene_intro->onice = false;
+		if (App->scene_intro->onfan == true) {
+			vehicle->Push(150, 0, 0);
+		}
+		App->scene_intro->onfan = false;
+		char title[80];
+		sprintf_s(title, "%.1f Km/h - TIME LEFT: %d", vehicle->GetKmh(), App->countdown);
+		App->window->SetTitle(title);
+	}
+	if (App->scene_intro->win == true || App->scene_intro->lose == true) {
+		brake = 10;
+		acceleration = 0;
+		turn = 0;
+		char title[80];
+		if (App->scene_intro->lose == true) {
+			sprintf_s(title, "%.1f Km/h - YOU LOOSE, press R to restart", vehicle->GetKmh());
+		}
+		if (App->scene_intro->win == true) {
+			sprintf_s(title, "%.1f Km/h - YOU WIN", vehicle->GetKmh());
+		}
+		App->window->SetTitle(title);
 
 	}
-	App->scene_intro->onice = false;
-	if (App->scene_intro->onfan == true) {
-		if (turn < TURN_DEGREES)
-			turn += TURN_DEGREES/2;
-	}
-	App->scene_intro->onfan = false;
 	
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
-
 	vehicle->Render();
 
-	char title[80];
-	if (App->LooseCondition == false) {
-		sprintf_s(title, "%.1f Km/h - TIME LEFT: %d", vehicle->GetKmh(), App->countdown);
-	}
-	else { sprintf_s(title, "%.1f Km/h - YOU LOOSE", vehicle->GetKmh()); }
-
-	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
 }
