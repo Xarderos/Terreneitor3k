@@ -65,15 +65,10 @@ public:
 	PhysBody3D* sensorgel;
 	PhysBody3D* sensoraigua;
 	PhysBody3D* sensorvent;
-	PhysBody3D* sensormeta;
 
 	bool onsand;
 	bool onfan;
 	bool onice;
 	bool onwater;
-	bool onwin;
 
-	Timer temps;
-	bool canwin;
-	bool victoria;
 };
